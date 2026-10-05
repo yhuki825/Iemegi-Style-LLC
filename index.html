@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>家メギスタイル合同会社｜建築・リフォーム工事</title>
+<meta name="description" content="家メギスタイル合同会社は、住まいの建築とリフォーム工事を手がけています。暮らしの細部まで見つめ、木と手仕事で応える家づくり。">
+<meta name="theme-color" content="#1f1b18">
+<!--
+================================================================
+  家メギスタイル合同会社  ブランドサイト デザイン案
+  ---------------------------------------------------------------
+  ■ デザインコンセプト「目と木」
+    社名の「メギ」を、植物の目木（メギ）と、反転させた「木目」の
+    二つの意味で読み解きました。
+    ・目：建てる前・直す前に、住まいを確かめる職人の目
+    ・木：素材と手仕事で応える家づくり
+    ・垣：目木が生垣として家を囲むように、完成後も暮らしを守る
+    ヒーローは木目と節（＝木の「目」）が描かれていく Canvas、
+    スクロールレールは大工の「墨壺」と「墨糸」をモチーフにしています。
+    ※土地・地名からの着想は採用していません。
+
+  ■ 公開前の確認事項（チェックリスト）
+    [ ] 1. 社名「メギ」の由来 … 本デザインは仮の解釈です。実際の由来に合わせて
+           「コンセプト」節の文章を差し替えてください。
+    [ ] 2. 建設業許可 … 許可の有無・許可番号・業種（建築一式／内装仕上 等）
+           を確認し、会社概要に記載してください（建設業法）。
+    [ ] 3. 事業範囲 … 新築の可否、対応工事（水まわり・外壁・屋根・耐震・断熱等）
+           が実態と合っているか確認してください。
+    [ ] 4. 対応エリア … 記載していません。必要なら会社概要に追加してください。
+    [ ] 5. 設立年月日・資本金・従業員数・営業時間・電話番号 … 未確認のため
+           会社概要ではコメントアウトしています。
+    [ ] 6. 代表挨拶 … 下書きです。必ず代表ご本人の確認・承認を得てください。
+    [ ] 7. 施工事例 … 画像はフリー素材（Unsplash）の仮置きです。自社施工写真に
+           差し替えてください。他社施工の写真を自社事例として掲載すると
+           景品表示法上の問題となるおそれがあります。
+    [ ] 8. 「保証」「アフター点検」など記載内容が実際のサービスと一致しているか
+           確認してください。
+    [ ] 9. 画像のクレジット … Unsplash は表記不要ですが、差し替え時は各素材の
+           ライセンスを確認してください。
+
+  ■ Cloudflare Pages へのデプロイ
+    このファイル（index.html）単体で動作します。ビルド不要。
+    Pages の「Direct Upload」でフォルダごとアップロードしてください。
+    外部依存：Google Fonts／Unsplash 画像（読み込み失敗時は色面に切り替わります）
+================================================================
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --yakisugi:#1f1b18;   /* 焼杉：ベース */
+  --sumi:#2c2723;       /* 墨：面の切り替え */
+  --hinoki:#ece3d4;     /* 檜：明るい面 */
+  --kiji:#d9cbb4;       /* 木地：罫線・補助 */
+  --megi:#9a3b33;       /* 目木の紅葉：アクセント */
+  --hana:#c8a24a;       /* 目木の花：ごく小さな点だけ */
+  --kaki:#5b6246;       /* 生垣の緑 */
+  --ink:#231f1c;
+  --paper-text:#3a332d;
+  --light-text:#e9e0d2;
+  --muted:#a89c8b;
+  --serif:"Shippori Mincho B1","Hiragino Mincho ProN","Yu Mincho",serif;
+  --sans:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",sans-serif;
+  --latin:"Cormorant Garamond","Times New Roman",serif;
+  --gutter:clamp(20px,5vw,72px);
+  --maxw:1200px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(80px + env(safe-area-inset-top,0px))}
+body{
+  margin:0;background:var(--yakisugi);color:var(--light-text);
+  font-family:var(--sans);font-size:16px;line-height:1.9;letter-spacing:.04em;
+  -webkit-font-smoothing:antialiased;
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3,p{margin:0}
+p,li,dd{word-break:auto-phrase;text-wrap:pretty}
+.nw{display:inline-block}
+:focus-visible{outline:2px solid var(--hana);outline-offset:3px}
+.skip{position:absolute;left:12px;top:-60px;z-index:200;background:var(--hinoki);color:var(--ink);padding:10px 16px;text-decoration:none}
+.skip:focus{top:calc(12px + env(safe-area-inset-top,0px))}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter)}
+
+/* ---------- header ---------- */
+.site-header{
+  position:fixed;inset:0 0 auto 0;z-index:100;
+  padding-top:env(safe-area-inset-top,0px);
+  transition:background .4s,box-shadow .4s;
+}
+.site-header.is-scrolled{background:rgba(31,27,24,.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 1px 0 rgba(217,203,180,.12)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;height:76px;padding:0 var(--gutter)}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand svg{width:34px;height:34px;flex:none}
+.brand-name{font-family:var(--serif);font-weight:600;font-size:18px;letter-spacing:.12em;line-height:1.2}
+.brand-name small{display:block;font-family:var(--sans);font-weight:400;font-size:10px;letter-spacing:.2em;color:var(--muted)}
+.gnav ul{list-style:none;margin:0;padding:0;display:flex;gap:30px}
+.gnav a{text-decoration:none;font-size:13px;letter-spacing:.14em;position:relative;padding:6px 0}
+.gnav a::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:100%;background:var(--kiji);transform:scaleX(0);transform-origin:left;transition:transform .35s}
+.gnav a:hover::after,.gnav a:focus-visible::after{transform:scaleX(1)}
+.menu-btn{display:none;background:none;border:0;color:inherit;width:44px;height:44px;cursor:pointer;position:relative}
+.menu-btn span{position:absolute;left:10px;right:10px;height:1px;background:currentColor;transition:transform .3s,opacity .3s}
+.menu-btn span:nth-child(1){top:17px}.menu-btn span:nth-child(2){top:26px}
+.menu-btn[aria-expanded="true"] span:nth-child(1){transform:translateY(4.5px) rotate(30deg)}
+.menu-btn[aria-expanded="true"] span:nth-child(2){transform:translateY(-4.5px) rotate(-30deg)}
+
+/* ---------- 墨壺レール ---------- */
+.rail{position:fixed;left:26px;top:22vh;bottom:22vh;width:14px;z-index:90;pointer-events:none}
+.rail-line{position:absolute;left:6px;top:0;bottom:0;width:1px;background:rgba(168,156,139,.28)}
+.rail-ink{position:absolute;left:5.5px;top:0;width:2px;height:0;background:var(--megi)}
+.rail-pot{position:absolute;left:-5px;top:0;width:24px;height:24px;transform:translateY(-50%)}
+.rail-marks{position:absolute;inset:0;list-style:none;margin:0;padding:0}
+.rail-marks li{position:absolute;left:3px;width:7px;height:1px;background:rgba(168,156,139,.6)}
+body.on-light .rail-line{background:rgba(58,51,45,.25)}
+body.on-light .rail-marks li{background:rgba(58,51,45,.5)}
+
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:100vh;min-height:100svh;overflow:hidden;display:grid;align-items:center;background:radial-gradient(120% 90% at 30% 60%,#2a241f 0%,var(--yakisugi) 70%)}
+#grain{position:absolute;inset:0;width:100%;height:100%}
+.hero-inner{position:relative;z-index:2;width:100%;max-width:var(--maxw);margin:0 auto;padding:120px var(--gutter) 90px;display:flex;justify-content:flex-end;align-items:flex-start;gap:clamp(32px,6vw,90px)}
+.hero-title{
+  writing-mode:vertical-rl;font-family:var(--serif);font-weight:600;
+  font-size:clamp(40px,5.4vw,76px);line-height:1.5;letter-spacing:.2em;margin:0;
+}
+.hero-title .line{display:block}
+.hero-title .line:nth-child(2){padding-top:2.2em}
+.hero-lead{writing-mode:vertical-rl;font-family:var(--serif);font-size:15px;line-height:2.4;letter-spacing:.18em;color:#cfc3b1;max-height:22em;padding-top:5.5em}
+.hero-foot{position:absolute;left:var(--gutter);bottom:calc(36px + env(safe-area-inset-bottom,0px));z-index:2;display:flex;align-items:flex-end;gap:22px;font-size:12px;letter-spacing:.2em;color:var(--muted)}
+.hero-foot .latin{font-family:var(--latin);font-style:italic;font-size:22px;letter-spacing:.04em;color:#cfc3b1}
+.scroll-cue{position:absolute;right:var(--gutter);bottom:calc(30px + env(safe-area-inset-bottom,0px));z-index:2;width:1px;height:64px;background:rgba(233,224,210,.2);overflow:hidden}
+.scroll-cue::after{content:"";position:absolute;left:0;top:-40%;width:1px;height:40%;background:var(--light-text);animation:cue 2.4s ease-in-out infinite}
+@keyframes cue{to{top:100%}}
+
+/* ---------- sections common ---------- */
+section{position:relative}
+.sec{padding:clamp(96px,14vw,180px) 0}
+.light{background:var(--hinoki);color:var(--paper-text)}
+.sec-head{display:flex;align-items:baseline;gap:20px;margin-bottom:clamp(40px,6vw,72px)}
+.sec-head h2{font-family:var(--serif);font-weight:600;font-size:clamp(26px,3.2vw,38px);letter-spacing:.14em;line-height:1.5}
+.sec-head .en{font-family:var(--latin);font-style:italic;font-size:18px;color:var(--muted);letter-spacing:.03em}
+.light .sec-head .en{color:#8a7d6b}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity 1s ease,transform 1s ease}
+.reveal.is-in{opacity:1;transform:none}
+
+/* ---------- concept ---------- */
+.concept-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(40px,7vw,110px);align-items:center}
+.concept-photo{position:relative;aspect-ratio:4/5;background:linear-gradient(150deg,#b89f7e,#6f5a44)}
+.concept-photo img{width:100%;height:100%;object-fit:cover}
+.concept-photo figcaption{position:absolute;right:-14px;bottom:28px;writing-mode:vertical-rl;background:var(--hinoki);padding:16px 8px;font-family:var(--serif);font-size:13px;letter-spacing:.3em}
+.concept-text h3{font-family:var(--serif);font-weight:600;font-size:clamp(24px,2.8vw,34px);line-height:1.8;letter-spacing:.1em;margin-bottom:28px}
+.concept-text p{font-family:var(--serif);font-size:16px;line-height:2.3;max-width:34em}
+.concept-text p+p{margin-top:1.4em}
+.knot{width:120px;height:80px;margin-bottom:26px}
+.knot path{fill:none;stroke:var(--megi);stroke-width:1.2;stroke-dasharray:var(--len);stroke-dashoffset:var(--len);transition:stroke-dashoffset 1.8s ease}
+.knot path:nth-child(2){transition-delay:.25s}.knot path:nth-child(3){transition-delay:.5s}.knot path:nth-child(4){transition-delay:.75s}
+.knot.is-in path{stroke-dashoffset:0}
+
+.values{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:clamp(72px,10vw,130px);border-top:1px solid rgba(58,51,45,.2)}
+.value{padding:40px clamp(18px,3vw,40px) 10px 0}
+.value+.value{padding-left:clamp(18px,3vw,40px);border-left:1px solid rgba(58,51,45,.2)}
+.value .kanji{font-family:var(--serif);font-size:56px;line-height:1;color:var(--megi);display:block;margin-bottom:18px}
+.value h4{font-family:var(--serif);font-size:19px;font-weight:600;letter-spacing:.1em;margin:0 0 12px}
+.value p{font-size:14.5px;line-height:2}
+
+/* ---------- business ---------- */
+.biz{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:0;align-items:center}
+.biz+.biz{margin-top:clamp(90px,12vw,150px)}
+.biz-photo{grid-column:1/8;aspect-ratio:3/2;position:relative;background:linear-gradient(135deg,#4b3f35,#2a231e);overflow:hidden}
+.biz-photo img{width:100%;height:100%;object-fit:cover;transform:scale(1.04);transition:transform 1.6s ease}
+.biz.is-in .biz-photo img{transform:scale(1)}
+.biz-body{grid-column:8/13;padding-left:clamp(28px,4.5vw,64px)}
+.biz.rev .biz-photo{grid-column:6/13;grid-row:1}
+.biz.rev .biz-body{grid-column:1/6;grid-row:1;padding-left:0;padding-right:clamp(28px,4.5vw,64px)}
+.biz-body h3{font-family:var(--serif);font-weight:600;font-size:clamp(30px,3.6vw,44px);letter-spacing:.2em;line-height:1.3;margin-bottom:6px}
+.biz-body .en{font-family:var(--latin);font-style:italic;color:var(--muted);font-size:18px}
+.biz-body .copy{font-family:var(--serif);font-size:18px;line-height:2;margin:28px 0 22px;color:#f1e9dc}
+.biz-body p.desc{font-size:14.5px;line-height:2.05;color:#cdc2b2}
+.tags{list-style:none;padding:0;margin:28px 0 0;display:flex;flex-wrap:wrap;gap:10px}
+.tags li{font-size:13px;letter-spacing:.08em;padding:6px 14px;border:1px solid rgba(217,203,180,.3);border-radius:2px}
+
+/* ---------- flow ---------- */
+.flow-wrap{position:relative}
+.flow-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));position:relative}
+.flow-line{position:absolute;left:0;right:0;top:27px;height:2px;pointer-events:none}
+.flow-line line{stroke:var(--megi);stroke-width:1.5;stroke-dasharray:1000;stroke-dashoffset:1000;transition:stroke-dashoffset 2.4s ease}
+.flow-wrap.is-in .flow-line line{stroke-dashoffset:0}
+.flow-list li{position:relative;padding-right:18px}
+.flow-num{position:relative;z-index:1;display:grid;place-items:center;width:56px;height:56px;border-radius:50%;background:var(--hinoki);border:1px solid rgba(58,51,45,.35);font-family:var(--latin);font-size:22px;color:var(--megi);margin-bottom:24px}
+.flow-list h3{font-family:var(--serif);font-size:18px;font-weight:600;letter-spacing:.1em;margin-bottom:10px}
+.flow-list p{font-size:14px;line-height:1.95}
+
+/* ---------- works ---------- */
+.works-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));grid-auto-rows:clamp(150px,17vw,230px);gap:14px}
+.work{position:relative;overflow:hidden;background:linear-gradient(140deg,#4a3e33,#241e1a);margin:0}
+.work img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s ease,filter .6s}
+.work:hover img{transform:scale(1.04)}
+.work figcaption{position:absolute;left:0;bottom:0;padding:18px 20px;font-size:13px;letter-spacing:.1em;color:#fff;background:linear-gradient(transparent,rgba(20,17,15,.72));width:100%}
+.work figcaption b{display:block;font-family:var(--serif);font-weight:600;font-size:16px}
+.w1{grid-column:1/4;grid-row:span 2}.w2{grid-column:4/7}.w3{grid-column:4/6}.w4{grid-column:6/7}.w5{grid-column:1/3}.w6{grid-column:3/7}
+.works-note{margin-top:22px;font-size:12.5px;color:var(--muted)}
+
+/* ---------- message ---------- */
+.message{background:var(--sumi)}
+.msg-inner{display:flex;flex-direction:row-reverse;justify-content:space-between;align-items:flex-start;gap:clamp(40px,6vw,100px)}
+.msg-title{writing-mode:vertical-rl;font-family:var(--serif);font-weight:600;font-size:clamp(28px,3vw,40px);line-height:1.7;letter-spacing:.2em;flex:none}
+.msg-body{writing-mode:vertical-rl;font-family:var(--serif);font-size:16px;line-height:2.5;letter-spacing:.14em;height:30em;color:#d9cfbf;overflow-x:auto;max-width:100%}
+.msg-body p{margin-left:1.6em}
+.msg-sign{margin-top:2.2em;font-size:14px}
+.msg-sign strong{font-size:22px;font-weight:600;letter-spacing:.3em;margin-top:.8em;display:block}
+
+/* ---------- company ---------- */
+.co-grid{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:clamp(30px,6vw,90px)}
+.co-table{width:100%;border-collapse:collapse;font-size:15px}
+.co-table th,.co-table td{text-align:left;vertical-align:top;padding:22px 0;border-bottom:1px solid rgba(58,51,45,.18)}
+.co-table tr:first-child th,.co-table tr:first-child td{border-top:1px solid rgba(58,51,45,.18)}
+.co-table th{width:9em;font-weight:500;color:#7a6c5a;letter-spacing:.14em;padding-right:20px}
+.co-table ul{margin:0;padding-left:1.2em}
+
+/* ---------- footer ---------- */
+.site-footer{padding:80px 0 calc(40px + env(safe-area-inset-bottom,0px));border-top:1px solid rgba(217,203,180,.1)}
+.foot-grid{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap}
+.foot-addr{font-size:13px;color:var(--muted);margin-top:18px;line-height:1.9}
+.foot-nav ul{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(2,auto);gap:10px 40px;font-size:13px}
+.foot-nav a{text-decoration:none;color:#cfc3b1}
+.foot-nav a:hover{color:#fff}
+.copyright{margin-top:60px;font-family:var(--latin);font-size:13px;color:#7c7163;letter-spacing:.08em}
+
+/* ---------- responsive ---------- */
+@media (max-width:960px){
+  .rail{display:none}
+  .menu-btn{display:block;z-index:120}
+  .gnav{position:fixed;inset:0;background:var(--yakisugi);display:grid;place-items:center;opacity:0;visibility:hidden;transition:opacity .35s,visibility .35s;padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}
+  .gnav.is-open{opacity:1;visibility:visible}
+  .gnav ul{flex-direction:column;align-items:center;gap:26px}
+  .gnav a{font-family:var(--serif);font-size:19px}
+  .concept-grid,.co-grid{grid-template-columns:1fr}
+  .concept-photo{aspect-ratio:4/3}
+  .concept-photo figcaption{right:12px}
+  .values{grid-template-columns:1fr}
+  .value+.value{padding-left:0;border-left:0;border-top:1px solid rgba(58,51,45,.2)}
+  .value{padding-right:0}
+  .biz,.biz.rev{display:block}
+  .biz-body,.biz.rev .biz-body{padding:32px 0 0}
+  .flow-list{grid-template-columns:1fr;gap:34px;padding-left:0}
+  .flow-line{display:none}
+  .flow-list li{display:grid;grid-template-columns:56px 1fr;column-gap:22px;padding-right:0}
+  .flow-list li .flow-num{grid-row:span 2;margin:0}
+  .flow-list li::before{content:"";position:absolute;left:27.5px;top:56px;bottom:-34px;width:1px;background:rgba(154,59,51,.45)}
+  .flow-list li:last-child::before{display:none}
+  .works-grid{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:44vw}
+  .w1{grid-column:1/3;grid-row:span 1}.w2,.w3,.w4,.w5{grid-column:auto}.w6{grid-column:1/3}
+}
+@media (max-width:720px){
+  .hero-inner{flex-direction:column;justify-content:center;padding-top:130px}
+  .hero-title,.hero-lead{writing-mode:horizontal-tb}
+  .hero-title{font-size:clamp(34px,9.5vw,48px);letter-spacing:.12em}
+  .hero-title .line:nth-child(2){padding-top:0;padding-left:1.2em}
+  .hero-lead{padding-top:0;max-height:none;letter-spacing:.08em;line-height:2.1}
+  .hero-foot{flex-direction:column;align-items:flex-start;gap:4px}
+  .msg-inner{flex-direction:column}
+  .msg-title,.msg-body{writing-mode:horizontal-tb;height:auto}
+  .msg-body p{margin:0 0 1.4em}
+  .msg-body{line-height:2.2;letter-spacing:.06em}
+  .co-table th{width:6.5em}
+  .co-table th,.co-table td{display:block;width:auto;border:0;padding:0}
+  .co-table th{padding-top:20px;font-size:13px}
+  .co-table td{padding:4px 0 20px;border-bottom:1px solid rgba(58,51,45,.18)}
+  .co-table tr:first-child th{border-top:1px solid rgba(58,51,45,.18)}
+  .co-table tr:first-child td{border-top:0}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+  .knot path{stroke-dashoffset:0}
+  .flow-line line{stroke-dashoffset:0}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">本文へスキップ</a>
+
+<header class="site-header" id="header">
+  <div class="header-inner">
+    <a class="brand" href="#top" aria-label="家メギスタイル合同会社 トップへ">
+      <!-- エンブレム：木目の節（＝目）を葉の輪郭で囲む -->
+      <svg viewBox="0 0 40 40" aria-hidden="true">
+        <path d="M20 3C9 11 6 24 20 37C34 24 31 11 20 3Z" fill="none" stroke="#9a3b33" stroke-width="1.4"/>
+        <ellipse cx="20" cy="21" rx="6.5" ry="4" fill="none" stroke="#e9e0d2" stroke-width="1"/>
+        <ellipse cx="20" cy="21" rx="3.2" ry="1.8" fill="none" stroke="#e9e0d2" stroke-width="1"/>
+        <circle cx="20" cy="21" r=".9" fill="#c8a24a"/>
+      </svg>
+      <span class="brand-name">家メギスタイル<small>IEMEGI STYLE LLC</small></span>
+      <!-- 要確認：英語表記（IEMEGI STYLE）は仮です -->
+    </a>
+    <button class="menu-btn" id="menuBtn" aria-controls="gnav" aria-expanded="false" aria-label="メニューを開く"><span></span><span></span></button>
+    <nav class="gnav" id="gnav" aria-label="メインナビゲーション">
+      <ul>
+        <li><a href="#concept">私たちについて</a></li>
+        <li><a href="#business">事業内容</a></li>
+        <li><a href="#flow">工事の流れ</a></li>
+        <li><a href="#works">施工事例</a></li>
+        <li><a href="#message">代表挨拶</a></li>
+        <li><a href="#company">会社概要</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- 墨壺スクロールレール -->
+<div class="rail" aria-hidden="true">
+  <div class="rail-line"></div>
+  <ul class="rail-marks" id="railMarks"></ul>
+  <div class="rail-ink" id="railInk"></div>
+  <svg class="rail-pot" id="railPot" viewBox="0 0 24 24">
+    <path d="M4 9c0-3 3.5-5 8-5s8 2 8 5v4c0 3.5-3.5 6-8 6s-8-2.5-8-6z" fill="#2c2723" stroke="#9a3b33" stroke-width="1.2"/>
+    <circle cx="12" cy="11" r="3" fill="none" stroke="#d9cbb4" stroke-width="1"/>
+    <circle cx="12" cy="11" r=".9" fill="#c8a24a"/>
+  </svg>
+</div>
+
+<main id="main">
+  <!-- ========== HERO ========== -->
+  <section class="hero" id="top" data-rail aria-label="トップ">
+    <canvas id="grain" aria-hidden="true"></canvas>
+    <div class="hero-inner">
+      <h1 class="hero-title">
+        <span class="line">住まいを、よく見る。</span>
+        <span class="line">木と手で、応える。</span>
+      </h1>
+      <p class="hero-lead">建てる前に、直す前に。<br>暮らしの細部まで確かめてから、<br>家づくりを始めます。</p>
+    </div>
+    <div class="hero-foot">
+      <span class="latin">Build &amp; Renovation</span>
+      <span>建築・リフォーム工事　家メギスタイル合同会社</span>
+    </div>
+    <div class="scroll-cue" aria-hidden="true"></div>
+  </section>
+
+  <!-- ========== CONCEPT ========== -->
+  <section class="sec light" id="concept" data-rail data-light>
+    <div class="wrap">
+      <div class="sec-head reveal"><h2>私たちについて</h2><span class="en">About us</span></div>
+      <div class="concept-grid">
+        <figure class="concept-photo reveal" style="margin:0">
+          <img src="https://images.unsplash.com/photo-1541123437800-1bb1317badc2?auto=format&fit=crop&w=1000&q=75" alt="木目の美しい無垢材の表面" loading="lazy" onerror="this.remove()">
+          <figcaption>木目と、目木。</figcaption>
+        </figure>
+        <div class="concept-text reveal">
+          <svg class="knot" id="knot" viewBox="0 0 120 80" aria-hidden="true">
+            <path d="M4 40 C30 10, 90 10, 116 40"/>
+            <path d="M4 40 C30 70, 90 70, 116 40"/>
+            <path d="M34 40 C44 24, 76 24, 86 40 C76 56, 44 56, 34 40Z"/>
+            <path d="M50 40 C54 33, 66 33, 70 40 C66 47, 54 47, 50 40Z"/>
+          </svg>
+          <!-- 要確認：社名「メギ」の由来。以下は「目木（植物）」と「木目」から着想した仮の解釈です -->
+          <h3>「メギ」は、<span class="nw">目と木。</span></h3>
+          <p>目木（メギ）は、昔から家のまわりに生垣として植えられてきた低木です。そして、ひっくり返せば「木目」。社名には、住まいを確かめる<span class="nw">職人の目と、</span>それに応える木の仕事を込めました。</p>
+          <p>床のきしみ、窓の結露、家事の動線。暮らしの困りごとは、よく見ることで答えが見つかります。新しく建てるときも、今の家を直すときも、私たちはまず現場に立ち、見て、確かめるところから始めます。</p>
+        </div>
+      </div>
+
+      <div class="values">
+        <div class="value reveal">
+          <span class="kanji" aria-hidden="true">目</span>
+          <h4>見立てる</h4>
+          <p>現地をしっかり調べ、傷みの原因や暮らし方まで把握してから、必要な工事をご提案します。</p>
+        </div>
+        <div class="value reveal">
+          <span class="kanji" aria-hidden="true">木</span>
+          <h4>つくる</h4>
+          <p>素材の選び方から仕上げの細部まで、手仕事で丁寧に。長く心地よく使える住まいに整えます。</p>
+        </div>
+        <div class="value reveal">
+          <span class="kanji" aria-hidden="true">垣</span>
+          <h4>守りつづける</h4>
+          <!-- 要確認：アフター点検の有無・内容 -->
+          <p>生垣が家を囲むように、完成後の点検や小さな修繕まで、住まいに寄り添い続けます。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== BUSINESS ========== -->
+  <section class="sec" id="business" data-rail>
+    <div class="wrap">
+      <div class="sec-head reveal"><h2>事業内容</h2><span class="en">Our work</span></div>
+
+      <article class="biz reveal">
+        <div class="biz-photo">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=75" alt="木の外壁と大きな窓のある住宅の外観" loading="lazy" onerror="this.remove()">
+        </div>
+        <div class="biz-body">
+          <h3>建築</h3>
+          <span class="en">New build</span>
+          <p class="copy">暮らし方から考える、<br>ちょうどいい家。</p>
+          <!-- 要確認：新築住宅・店舗等の施工範囲、建設業許可の業種 -->
+          <p class="desc">家族の人数や一日の過ごし方、将来の変化まで伺ったうえで、間取りと素材を組み立てます。住宅はもちろん、店舗や事務所の建築もご相談いただけます。</p>
+          <ul class="tags">
+            <li>注文住宅</li><li>店舗・事務所</li><li>増築</li><li>小屋・離れ</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="biz rev reveal">
+        <div class="biz-photo">
+          <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=1400&q=75" alt="木の天板と白い壁で改装されたキッチン" loading="lazy" onerror="this.remove()">
+        </div>
+        <div class="biz-body">
+          <h3>リフォーム</h3>
+          <span class="en">Renovation</span>
+          <p class="copy">今の家を、<br>これからの暮らしに合わせて。</p>
+          <!-- 要確認：対応工事の範囲（耐震・断熱・外壁・屋根など） -->
+          <p class="desc">キッチンや浴室などの水まわりから、内装の模様替え、外壁・屋根の修繕、間取りを変える全面改装まで。小さな修理でもお気軽にどうぞ。</p>
+          <ul class="tags">
+            <li>水まわり</li><li>内装・床・建具</li><li>外壁・屋根</li><li>間取り変更</li><li>断熱・耐震</li><li>小さな修繕</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ========== FLOW（実際の手順なので番号を使用） ========== -->
+  <section class="sec light" id="flow" data-rail data-light>
+    <div class="wrap">
+      <div class="sec-head reveal"><h2>工事の流れ</h2><span class="en">Process</span></div>
+      <!-- 要確認：実際の進め方・見積もり費用の有無 -->
+      <div class="flow-wrap" id="flowList">
+        <svg class="flow-line" viewBox="0 0 1000 2" preserveAspectRatio="none" aria-hidden="true"><line x1="0" y1="1" x2="1000" y2="1"/></svg>
+        <ol class="flow-list">
+        <li><span class="flow-num">1</span><h3>ご相談</h3><p>建てたい家、直したい場所、気になっていることをお聞かせください。</p></li>
+        <li><span class="flow-num">2</span><h3>現地調査</h3><p>現場に伺い、寸法や傷みの状態、暮らし方を確かめます。</p></li>
+        <li><span class="flow-num">3</span><h3>ご提案・お見積り</h3><p>工事の内容と費用を、わかりやすい言葉でご説明します。</p></li>
+        <li><span class="flow-num">4</span><h3>施工</h3><p>近隣への配慮を忘れず、工程をご報告しながら進めます。</p></li>
+        <li><span class="flow-num">5</span><h3>お引き渡し・その後</h3><p>仕上がりを一緒に確認。完成後の点検や修繕にも対応します。</p></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== WORKS ========== -->
+  <section class="sec" id="works" data-rail>
+    <div class="wrap">
+      <div class="sec-head reveal"><h2>施工事例</h2><span class="en">Works</span></div>
+      <!-- 要確認：以下はすべてフリー素材による仮画像・仮キャプションです。公開前に自社施工写真へ差し替えてください（景品表示法） -->
+      <div class="works-grid reveal">
+        <figure class="work w1"><img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=75" alt="明るいリビングの全面リフォーム" loading="lazy" onerror="this.remove()"><figcaption><b>光が入るリビングへ</b>リフォーム｜全面改装</figcaption></figure>
+        <figure class="work w2"><img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1000&q=75" alt="対面式キッチン" loading="lazy" onerror="this.remove()"><figcaption><b>家族と話せるキッチン</b>リフォーム｜水まわり</figcaption></figure>
+        <figure class="work w3"><img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=900&q=75" alt="木の床と白い壁の室内" loading="lazy" onerror="this.remove()"><figcaption><b>無垢の床に張り替え</b>リフォーム｜内装</figcaption></figure>
+        <figure class="work w4"><img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=700&q=75" alt="建築中の木造の骨組み" loading="lazy" onerror="this.remove()"><figcaption><b>木組みの家</b>建築</figcaption></figure>
+        <figure class="work w5"><img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=900&q=75" alt="改装された浴室" loading="lazy" onerror="this.remove()"><figcaption><b>ゆったり入れる浴室</b>リフォーム｜水まわり</figcaption></figure>
+        <figure class="work w6"><img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1400&q=75" alt="新築住宅の外観" loading="lazy" onerror="this.remove()"><figcaption><b>庭とつながる平屋</b>建築｜新築住宅</figcaption></figure>
+      </div>
+      <p class="works-note">※写真はイメージです。</p>
+    </div>
+  </section>
+
+  <!-- ========== MESSAGE ========== -->
+  <section class="sec message" id="message" data-rail>
+    <div class="wrap">
+      <div class="sec-head reveal"><h2>代表挨拶</h2><span class="en">Message</span></div>
+      <!-- 要確認：以下は下書きです。代表ご本人の確認・承認を得てから公開してください -->
+      <div class="msg-inner reveal">
+        <p class="msg-title">よく見て、<br>よく聞いて、<br>よくつくる。</p>
+        <div class="msg-body">
+          <p>家づくりの仕事で、いちばん大切にしているのは「見ること」です。</p>
+          <p>同じ雨漏りでも、原因は家ごとに違います。同じキッチンの入れ替えでも、使う人の背丈や料理の仕方によって、ちょうどいい高さは変わります。だからこそ、まず現場に立ち、住まいとお客様の暮らしをよく見て、よく聞くことから始めています。</p>
+          <p>大きな新築工事も、ひとつの建具の修理も、私たちにとっては同じ一つの仕事です。完成して終わりではなく、その後も気軽に声をかけていただける存在でありたいと考えています。</p>
+          <p class="msg-sign">家メギスタイル合同会社　代表社員<strong>山崎 浩樹</strong></p>
+          <!-- 要確認：役職名（代表社員／代表）の表記 -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== COMPANY ========== -->
+  <section class="sec light" id="company" data-rail data-light>
+    <div class="wrap co-grid">
+      <div class="sec-head reveal" style="flex-direction:column;gap:6px"><h2>会社概要</h2><span class="en">Company</span></div>
+      <table class="co-table reveal">
+        <tbody>
+          <tr><th scope="row">商号</th><td>家メギスタイル合同会社</td></tr>
+          <tr><th scope="row">代表者</th><td>山崎 浩樹</td></tr>
+          <tr><th scope="row">所在地</th><td>〒700-0927<br>岡山県岡山市北区西古松1-12-35</td></tr>
+          <tr><th scope="row">事業内容</th><td><ul><li>建築工事</li><li>リフォーム工事</li></ul></td></tr>
+          <!-- 要確認：建設業許可（例：岡山県知事許可（般-○）第○○○○○号／業種）
+          <tr><th scope="row">建設業許可</th><td></td></tr>
+          -->
+          <!-- 要確認：設立
+          <tr><th scope="row">設立</th><td></td></tr>
+          -->
+          <!-- 要確認：資本金
+          <tr><th scope="row">資本金</th><td></td></tr>
+          -->
+          <!-- 要確認：営業時間・定休日・対応エリア
+          <tr><th scope="row">営業時間</th><td></td></tr>
+          <tr><th scope="row">対応エリア</th><td></td></tr>
+          -->
+        </tbody>
+      </table>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="#top">
+          <svg viewBox="0 0 40 40" aria-hidden="true">
+            <path d="M20 3C9 11 6 24 20 37C34 24 31 11 20 3Z" fill="none" stroke="#9a3b33" stroke-width="1.4"/>
+            <ellipse cx="20" cy="21" rx="6.5" ry="4" fill="none" stroke="#e9e0d2" stroke-width="1"/>
+            <ellipse cx="20" cy="21" rx="3.2" ry="1.8" fill="none" stroke="#e9e0d2" stroke-width="1"/>
+            <circle cx="20" cy="21" r=".9" fill="#c8a24a"/>
+          </svg>
+          <span class="brand-name">家メギスタイル合同会社<small>建築・リフォーム工事</small></span>
+        </a>
+        <p class="foot-addr">〒700-0927 岡山県岡山市北区西古松1-12-35</p>
+      </div>
+      <nav class="foot-nav" aria-label="フッターナビゲーション">
+        <ul>
+          <li><a href="#concept">私たちについて</a></li>
+          <li><a href="#business">事業内容</a></li>
+          <li><a href="#flow">工事の流れ</a></li>
+          <li><a href="#works">施工事例</a></li>
+          <li><a href="#message">代表挨拶</a></li>
+          <li><a href="#company">会社概要</a></li>
+        </ul>
+      </nav>
+    </div>
+    <p class="copyright">&copy; <span id="year">2026</span> Iemegi Style LLC.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* ---- header / menu ---- */
+  var header = document.getElementById('header');
+  var btn = document.getElementById('menuBtn');
+  var nav = document.getElementById('gnav');
+  function setMenu(open){
+    nav.classList.toggle('is-open', open);
+    btn.setAttribute('aria-expanded', String(open));
+    btn.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
+    document.body.style.overflow = open ? 'hidden' : '';
+    if(open){ var f = nav.querySelector('a'); if(f) f.focus(); }
+  }
+  btn.addEventListener('click', function(){ setMenu(btn.getAttribute('aria-expanded') !== 'true'); });
+  nav.addEventListener('click', function(e){ if(e.target.closest('a') && nav.classList.contains('is-open')) setMenu(false); });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && nav.classList.contains('is-open')){ setMenu(false); btn.focus(); }
+  });
+
+  /* ---- 墨壺レール ---- */
+  var ink = document.getElementById('railInk');
+  var pot = document.getElementById('railPot');
+  var marks = document.getElementById('railMarks');
+  var secs = [].slice.call(document.querySelectorAll('[data-rail]'));
+  var lights = [].slice.call(document.querySelectorAll('[data-light]'));
+  function buildMarks(){
+    marks.innerHTML = '';
+    var max = document.documentElement.scrollHeight - innerHeight;
+    secs.forEach(function(s){
+      var li = document.createElement('li');
+      li.style.top = (Math.min(1, s.offsetTop / Math.max(1,max)) * 100) + '%';
+      marks.appendChild(li);
+    });
+  }
+  function onScroll(){
+    var y = scrollY, max = document.documentElement.scrollHeight - innerHeight;
+    var p = max > 0 ? Math.min(1, Math.max(0, y / max)) : 0;
+    ink.style.height = (p * 100) + '%';
+    pot.style.top = (p * 100) + '%';
+    header.classList.toggle('is-scrolled', y > 40);
+    var mid = innerHeight / 2, onLight = false;
+    lights.forEach(function(s){ var r = s.getBoundingClientRect(); if(r.top < mid && r.bottom > mid) onLight = true; });
+    document.body.classList.toggle('on-light', onLight);
+  }
+  addEventListener('scroll', onScroll, {passive:true});
+  addEventListener('resize', function(){ buildMarks(); onScroll(); });
+  addEventListener('load', buildMarks);
+  buildMarks(); onScroll();
+
+  /* ---- reveal ---- */
+  var knot = document.getElementById('knot');
+  [].forEach.call(knot.querySelectorAll('path'), function(p){ p.style.setProperty('--len', Math.ceil(p.getTotalLength())); });
+  var targets = [].slice.call(document.querySelectorAll('.reveal, #knot, #flowList'));
+  if('IntersectionObserver' in window && !reduce){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('is-in'); io.unobserve(en.target); } });
+    }, {threshold:0.18, rootMargin:'0px 0px -6% 0px'});
+    targets.forEach(function(t){ io.observe(t); });
+  } else {
+    targets.forEach(function(t){ t.classList.add('is-in'); });
+  }
+
+  /* ---- ヒーロー：木目と節（＝木の「目」）を描く ---- */
+  var cv = document.getElementById('grain');
+  var ctx = cv.getContext('2d');
+  var W, H, dpr, start = performance.now(), running = true, raf;
+  function resize(){
+    dpr = Math.min(2, window.devicePixelRatio || 1);
+    W = cv.clientWidth; H = cv.clientHeight;
+    cv.width = W * dpr; cv.height = H * dpr;
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+  }
+  function draw(t){
+    var el = (t - start) / 1000;
+    var prog = reduce ? 1 : Math.min(1, el / 3.2);
+    var ease = 1 - Math.pow(1 - prog, 3);
+    var drift = reduce ? 0 : el * 0.08;
+    ctx.clearRect(0,0,W,H);
+    var kx = W * (W < 720 ? 0.5 : 0.36), ky = H * 0.56;
+    var gap = Math.max(11, H / 58);
+    var n = Math.ceil(H / gap) + 6;
+    var reach = W * ease;
+    ctx.lineWidth = 1;
+    for(var i = -3; i < n; i++){
+      var y0 = i * gap;
+      var dy0 = y0 - ky;
+      var side = dy0 >= 0 ? 1 : -1;
+      var near = Math.exp(-(dy0*dy0) / (2 * Math.pow(H*0.22,2)));
+      var a = 0.05 + near * 0.11;
+      ctx.strokeStyle = 'rgba(233,224,210,' + a.toFixed(3) + ')';
+      ctx.beginPath();
+      for(var x = 0; x <= reach; x += 6){
+        var dx = x - kx;
+        var wave = Math.sin(x * 0.0042 + i * 0.35 + drift) * 7 + Math.sin(x * 0.011 + i * 0.9) * 2.4;
+        var bump = side * H * 0.13 * near * Math.exp(-(dx*dx) / (2 * Math.pow(W*0.12,2)));
+        var yy = y0 + wave + bump;
+        if(x === 0) ctx.moveTo(x, yy); else ctx.lineTo(x, yy);
+      }
+      ctx.stroke();
+    }
+    /* 節の年輪 */
+    var rings = 7;
+    for(var r = 1; r <= rings; r++){
+      var rp = Math.max(0, Math.min(1, ease * 1.4 - r * 0.07));
+      if(rp <= 0) continue;
+      var rx = r * W * 0.012 + 4, ry = r * H * 0.0105 + 2;
+      var breathe = reduce ? 0 : Math.sin(el * 0.6 - r * 0.5) * 0.6;
+      ctx.strokeStyle = r <= 2 ? 'rgba(200,162,74,' + (0.55 * rp) + ')' : 'rgba(154,59,51,' + (0.55 - r * 0.05) * rp + ')';
+      ctx.beginPath();
+      ctx.ellipse(kx, ky, rx + breathe, ry + breathe * 0.5, -0.06, -Math.PI/2, -Math.PI/2 + Math.PI * 2 * rp);
+      ctx.stroke();
+    }
+    if(!reduce && running) raf = requestAnimationFrame(draw);
+  }
+  resize();
+  addEventListener('resize', function(){ resize(); if(reduce) draw(performance.now()); });
+  if(reduce){ draw(performance.now()); }
+  else {
+    raf = requestAnimationFrame(draw);
+    if('IntersectionObserver' in window){
+      new IntersectionObserver(function(en){
+        var vis = en[0].isIntersecting;
+        if(vis && !running){ running = true; raf = requestAnimationFrame(draw); }
+        if(!vis){ running = false; cancelAnimationFrame(raf); }
+      }).observe(cv);
+    }
+  }
+})();
+</script>
+</body>
+</html>
